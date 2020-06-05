@@ -7,7 +7,7 @@ end
 
 #ActiveRecord::Base.connection.migration_context.needs_migration?
 
-
+use Rack::MethodOverride
 run ApplicationController
 use OrdersController
 use ProfilesController

@@ -6,7 +6,8 @@ class CreateOrders < ActiveRecord::Migration
       
       t.integer :basket_id
       t.integer :user_id
-    
+      
+  
     end
   end
 end
