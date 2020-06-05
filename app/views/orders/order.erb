@@ -1,0 +1,16 @@
+<h1>Hello </h1>
+<h3>What would you like to order</h3>
+ 
+<p>Choose from one of the preset gourmet baskets or create your own custom one</p>
+<form action="/show" method="post">
+
+<label> Choose a Gourmet Basket:</label>
+<select name="basket">
+<% Basket.all.each do |basket|%>
+<option value="<% basket.name%>"> <%= basket.name %> </option>
+
+ 
+<% end %>
+</select>
+<input type="submit" value="Order" />
+</form>

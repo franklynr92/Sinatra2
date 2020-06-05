@@ -4,29 +4,16 @@ class ApplicationController < Sinatra::Base
 
   configure do
     set :public_folder, 'public'
-    set :views, 'app/views'
+   # + 'orders'
+    #set :views, 'app/views/orders'
     enable :sessions
     set :session_secret, "carcollection"
+    #set :views, Proc.new { File.join(root, "templates") }
+    set :views, 'app/views'
 end
 
 #session hijacking
 
-helpers do
-    def logged_in?
-        !!session[:email]
-    end
-
-    def login(email)
-       session[:email] = email
-    #else 
-     #   redirect '/login'
-    #end
-    end
-
-    def logout!
-        session.clear
-    end
-end
 
   get "/" do
     erb :hello
@@ -51,7 +38,7 @@ end
     @user.email = params[:email]
     @user.user_name = params[:user_name]
     @user.password = params[:password]
-    session[:user_id] = @user.id
+    session[:user_name] = @user.user_name
     erb :profile
   end
 
@@ -64,8 +51,28 @@ end
     erb :profile
   end
 
-  get '/order' do
-    erb :order
-  end
+  #or a show page
+  #authorization
+  #forms for the orders
+  #7 RESTful routes on basket model
+
+  helpers do
+    def logged_in?
+        !!session[:user_name]
+    end
+
+    def login(user_name)
+       session[:user_name] = user_name
+    #else 
+     #   redirect '/login'
+    #end
+    end
+
+    def logout!
+        session.clear
+    end
+end
+
+ 
 
 end
