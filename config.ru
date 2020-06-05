@@ -7,5 +7,7 @@ end
 
 #ActiveRecord::Base.connection.migration_context.needs_migration?
 
-use OrdersController
+
 run ApplicationController
+use OrdersController
+use ProfilesController

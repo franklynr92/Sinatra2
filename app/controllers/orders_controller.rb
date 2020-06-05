@@ -7,6 +7,7 @@ get '/order' do
 end
 
 post '/show' do
+    #pull name from where
     erb :"orders/show"
 end
 
