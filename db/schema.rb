@@ -16,24 +16,26 @@ ActiveRecord::Schema.define(version: 20200603205428) do
   create_table "baskets", force: :cascade do |t|
     t.string   "name"
     t.string   "ingredients"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string  "name"
-    t.string  "addresses"
-    t.integer "basket_id"
-    t.integer "user_id"
+    t.string   "name"
+    t.string   "addresses"
+    t.integer  "basket_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.string   "user_name"
-    t.string   "password"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end

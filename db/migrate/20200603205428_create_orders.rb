@@ -6,7 +6,7 @@ class CreateOrders < ActiveRecord::Migration
       
       t.integer :basket_id
       t.integer :user_id
-      
+      t.timestamps null: false
   
     end
   end

@@ -1,0 +1,7 @@
+<h1>These are all the baskets available to you for ordering</h1>
+<ul><% Basket.all.each do |basket| %>
+    <li><b><%= basket.name%>:</b> <%= basket.ingredients%></li>
+    <% end %>
+</ul>
+
+

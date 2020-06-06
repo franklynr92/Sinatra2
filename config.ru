@@ -11,3 +11,4 @@ use Rack::MethodOverride
 run ApplicationController
 use OrdersController
 use ProfilesController
+use SessionsController
