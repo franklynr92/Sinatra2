@@ -10,7 +10,7 @@ end
 
 post "/signup" do 
     
-  user = User.new(params[:user])
+  user = User.create(params[:user])
   user.save
   session[:user_id] = user.id
   binding.pry
@@ -19,10 +19,9 @@ end
 
 
 post "/login" do
-    
-    user = User.find_by(user_name: params[:user][:user_name])
     binding.pry
-    if user.authenticate(password: params[:user][:password])
+    user = User.find_by(user_name: params[:user][:user_name])
+    if user.authenticate(params[:user][:password])
         session[:user_id] = user.id
         redirect to '/profile/:user_id'
     else

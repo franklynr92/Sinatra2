@@ -1,13 +1,16 @@
 <h1>Baskets available for you to order</h1>
 <ul><% Basket.all.each do |basket| %>
 </br>
-    <li><b><%= basket.id%>.</b> <b><%= basket.name.capitalize%> Basket :</b> <i>Contains</i> : <u><%= basket.ingredients%></u></li>
+    <li><b>ID: <%= basket.id%>.</b> <b><%= basket.name.capitalize%> Basket :</b> <i>Contains</i> : <u><%= basket.ingredients%></u></li>
     <% end %>
 </ul>
 </br>
-<h2>To order a basket</h2>
-<h3>Click <a href="/order/:user_id">Here</a> to do so</h3>
+<h2>Click <a href="/order/:user_id">Here</a> to order a basket</h2>
+
 </br>
 
-<p>To edit a basket</p>
-<a href="/show/customs/:user_id/edit">Click here</a>
+
+<p>To edit a basket <a href="/show/customs/:user_id/edit">click here</a> </p>
+
+</br>
+<p><a href="/logout">Logout</a></p> 

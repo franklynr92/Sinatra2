@@ -2,7 +2,7 @@
 <h2>These are what already made</h2>
 <ul><% Basket.all.each do |basket| %>
 </br>
-    <li><b><%= basket.id%>.</b> <b><%= basket.name.capitalize%> Basket :</b> <i>Contains</i> : <u><%= basket.ingredients%></u></li>
+    <li><b>ID:<%= basket.id%>.</b> <b><%= basket.name.capitalize%> Basket :</b> <i>Contains</i> : <u><%= basket.ingredients%></u></li>
     <% end %>
 </ul>
 

@@ -83,14 +83,14 @@ put '/basket/create/:user_id' do
     basket.ingredients = params[:ingredients]
     basket.save
     binding.pry
-    erb :"orders/edit/"
+    erb :"orders/display_baskets"
 end
 
 delete '/basket/create/:user_id' do
     binding.pry
     basket = Basket.find_by(id: params[:baskets])
     basket.destroy
-    erb :"orders/edit"
+    erb :"orders/display_baskets"
 end
 
 end
