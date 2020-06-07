@@ -1,20 +1,10 @@
-<h1>Hello <%= @user.name %> !</h1>
+<% binding.pry %>
+<% if @user %>
+<h1>Hello  <%= @user.name %> !</h1>
 <h3>What would you like to order</h3>
- 
-<p>Choose from one of the preset gourmet baskets or create your own custom one</p>
-<form action="/show" method="post">
-
-<label> Choose a Gourmet Basket:</label>
-<select name="basket">
-<% Basket.all.each do |basket|%>
-<%# binding.pry%>
-<% if basket.name != nil %>
-<option value="<%= basket.name%>" id="<%= basket.name%>"> <%= basket.name %> Basket. This contains: <%= basket.ingredients%> </option>
  <% end %>
-<% end %>
-</select>
-<input type="submit" value="Order" />
-</form>
+<p>Choose from one of the preset gourmet baskets or create your own custom one</p>
+
 
 <p>Would you like to create your custom basket?</p>
 <p><a href="/display/basket/:user_id">Click here!</a><p>

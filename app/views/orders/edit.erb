@@ -1,0 +1,55 @@
+<h2>Edit customized basket</h2>
+<h1>These are the baskets</h1>
+
+<ul><% Basket.all.each do |basket| %>
+</br>
+    <li><b><%= basket.id%>.</b> <b><%= basket.name.capitalize%>:</b> <i>Contains</i> : <u><%= basket.ingredients%></u></li>
+    <% end %>
+</ul>
+</br>
+<h3>To update a "Gourmet Basket"</h3>
+
+
+
+
+
+<label> Choose a "Gourmet Basket" to update:</label>
+<select id="id" name="basket" form="basketlist">
+<% Basket.all.each do |basket|%>
+<% if basket.name != nil %>
+<option value="<%= basket.name%>" id="<%= basket.id%>"> <%= basket.id %> <%= basket.name %> Basket. This contains: <%= basket.ingredients%> </option>
+ <% end %>
+<% end %>
+</select>
+
+<form action ="/basket/create/:user_id" id="basketlist" method ="post" >
+<input type="hidden" name="_method" value="put">
+<br>
+<p>Enter the id of the basket you would like to change</p>
+<label for ="id">Basket id:</label>
+<input type="number" id="basket.id" name="id">
+<p>Edit the "Basket Name" you selected <p>
+<label for="name">Basket Name:</label>
+<input type="text" id="basket.name" name="name"   />
+<p>Edit the "Basket Ingredients" you selected <p>
+<label for="name">Basket Ingredients: </label>
+<input type="text" id="basket.ingredients" name="ingredients"  />
+<input type='submit' value="Update basket" />
+</form>
+
+<h3>To Delete a "Gourmet Basket"</h3>
+<form action="/basket/create/:user_id" method="post">
+<input type="hidden" name="_method" value="delete">
+<select name="baskets">
+<% Basket.all.each do |basket|%>
+<% if basket.name !=nil %>
+<option value="<%= basket.id %>" id="<%= basket.id %>" name="<%= basket.name %>">  <%= basket.id %>: <%= basket.name %> Basket. This contains: <%= basket.ingredients %> </option>
+<% end %>
+<% end %>
+</select>
+<input type="submit" value="delete" />
+</form>
+
+<a href="/profile/:user_id">Click here to go back to your profile</a>
+<h2>Would you like to make an order?</h2>
+<h3>Click <a href="/order/:user_id">Here</a> to do so</h3>

@@ -3,13 +3,24 @@ class OrdersController < ApplicationController
 
 
 get '/order/:user_id' do
+    if logged_in?
     logged_in_user_id = session[:user_id]
     @user = User.find_by(id: logged_in_user_id)
-    binding.pry
-    erb :"orders/order"
+        erb :"orders/order"
+    else    
+        @error = "Invalid credentials"
+        erb :"hello"
+    end
+end
+   
+    
+    #if @current_user 
+    #erb :"orders/order" 
+
     #get the name of the user to show, possibly use in conjuction
     #with a logged_in? and pull user name || name from there
-end
+
+
 
 post '/show/:user_id' do
     binding.pry
@@ -46,8 +57,8 @@ post '/basket/create/:user_id' do
     @basket.ingredients = params[:ingredients]
     @basket.save
     @basket
-    #binding.pry
-    erb :"orders/display_custom_basket/"
+    binding.pry
+    erb :"orders/display_custom_basket"
 
 end
 
@@ -56,5 +67,30 @@ get '/show/customs/:user_id' do
     @user = User.find_by(id: logged_in_user_id)
     erb :"orders/display_baskets"
   end
+
+get '/show/customs/:user_id/edit' do
+    
+    logged_in_user_id = session[:user_id]
+    binding.pry
+    @user = User.find_by(id: logged_in_user_id)
+    erb :"orders/edit"
+end
+
+put '/basket/create/:user_id' do
+    binding.pry
+    basket = Basket.find_by(id: params[:id])
+    basket.name = params[:name]
+    basket.ingredients = params[:ingredients]
+    basket.save
+    binding.pry
+    erb :"orders/edit/"
+end
+
+delete '/basket/create/:user_id' do
+    binding.pry
+    basket = Basket.find_by(id: params[:baskets])
+    basket.destroy
+    erb :"orders/edit"
+end
 
 end
