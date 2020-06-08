@@ -23,7 +23,8 @@ post "/login" do
     user = User.find_by(user_name: params[:user][:user_name])
     if user.authenticate(params[:user][:password])
         session[:user_id] = user.id
-        redirect to '/profile/:user_id'
+        binding.pry
+        redirect to "/profile/#{user.id}"
     else
         @error = "Invalid credentials"
         erb :"hello"

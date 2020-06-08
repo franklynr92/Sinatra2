@@ -13,27 +13,26 @@
 
 
 
-<label> Choose a "Gourmet Basket" to update:</label>
-<select id="id" name="basket" form="basketlist">
-<% Basket.all.each do |basket|%>
-<% if basket.name != nil %>
-<option value="<%= basket.name%>" id="<%= basket.id%>"> <%= basket.id %> <%= basket.name %> Basket. This contains: <%= basket.ingredients%> </option>
- <% end %>
-<% end %>
-</select>
 
 <form action ="/basket/create/:user_id" id="basketlist" method ="post" >
 <input type="hidden" name="_method" value="put">
 <br>
-<p>Enter the id of the basket you would like to change</p>
-<label for ="id">Basket id:</label>
-<input type="number" id="basket.id" name="id">
+<p>Choose the basket you want to edit</p>
+<label for ="id">Basket: </label>
+<select name="id" >
+<% Basket.all.each do |basket|%>
+<% if basket.name != nil && basket.user_id == current_user.id %>
+<option value="<%= basket.id%>" id="<%= basket.id%>"> <%= basket.id %> <%= basket.name %> Basket. This contains: <%= basket.ingredients%> </option>
+ <% end %>
+<% end %>
+</select>
+<br> <br>
 <p>Edit the "Basket Name" you selected <p>
 <label for="name">Basket Name:</label>
-<input type="text" id="basket.name" name="name"   />
+<input type="text" name="name"   />
 <p>Edit the "Basket Ingredients" you selected <p>
-<label for="name">Basket Ingredients: </label>
-<input type="text" id="basket.ingredients" name="ingredients"  />
+<label for="ingredients">Basket Ingredients: </label>
+<input type="text" name="ingredients"  />
 <input type='submit' value="Update basket" />
 </form>
 
@@ -42,7 +41,7 @@
 <input type="hidden" name="_method" value="delete">
 <select name="baskets">
 <% Basket.all.each do |basket|%>
-<% if basket.name !=nil %>
+<% if basket.name !=nil && basket.user_id == current_user.id %>
 <option value="<%= basket.id %>" id="<%= basket.id %>" name="<%= basket.name %>">  <%= basket.id %>: <%= basket.name %> Basket. This contains: <%= basket.ingredients %> </option>
 <% end %>
 <% end %>

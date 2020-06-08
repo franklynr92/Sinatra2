@@ -3,7 +3,7 @@ class CreateBaskets < ActiveRecord::Migration
     create_table :baskets do |t|
       t.string :name
       t.string :ingredients
-      
+
       t.timestamps null: false
     end
   end

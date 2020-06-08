@@ -6,7 +6,7 @@ get '/order/:user_id' do
     if logged_in?
     logged_in_user_id = session[:user_id]
     @user = User.find_by(id: logged_in_user_id)
-        erb :"orders/order"
+        erb :"orders/all"
     else    
         @error = "Invalid credentials"
         erb :"hello"
@@ -43,46 +43,49 @@ post '/show/:user_id' do
     erb :"orders/show"
 end
 
-get '/display/basket/:user_id' do
+get '/basket/new' do
+    #params[:user_id]  == 3
     logged_in_user_id = session[:user_id]
     @user = User.find_by(id: logged_in_user_id)
-    erb :"orders/display_basket"
+    erb :"orders/new"
 end
 
-post '/basket/create/:user_id' do
+post '/basket/create' do
     logged_in_user_id = session[:user_id]
     @user = User.find_by(id: logged_in_user_id)
     @basket = Basket.new
     @basket.name = params[:name]
     @basket.ingredients = params[:ingredients]
+    binding.pry
+    @basket.user_id = current_user.id
     @basket.save
     @basket
-    binding.pry
     erb :"orders/display_custom_basket"
 
 end
 
-get '/show/customs/:user_id' do
+get '/show/customs' do
     logged_in_user_id = session[:user_id]
     @user = User.find_by(id: logged_in_user_id)
     erb :"orders/display_baskets"
-  end
+end
 
-get '/show/customs/:user_id/edit' do
+get '/show/customs/edit' do
     
     logged_in_user_id = session[:user_id]
-    binding.pry
+
     @user = User.find_by(id: logged_in_user_id)
     erb :"orders/edit"
 end
 
 put '/basket/create/:user_id' do
-    binding.pry
+    
     basket = Basket.find_by(id: params[:id])
+    binding.pry
     basket.name = params[:name]
     basket.ingredients = params[:ingredients]
     basket.save
-    binding.pry
+    
     erb :"orders/display_baskets"
 end
 

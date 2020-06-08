@@ -5,14 +5,16 @@
     <li><b>ID:<%= basket.id%>.</b> <b><%= basket.name.capitalize%> Basket :</b> <i>Contains</i> : <u><%= basket.ingredients%></u></li>
     <% end %>
 </ul>
-
-<form action ="/basket/create/:user_id" method = "post">
+<br><br><br>
+<h2><b>Create a Basket<b></h2>
+<form action ="/basket/create" method = "post">
 <label for="name">Basket Name:</label>
 <input type="text" id="name" name="name" />
 <label for="name">Basket Ingredients: </label>
 <input type="text" id="ingredients" name="ingredients" />
 <input type='submit' value="submit" />
 </form>
-
-<h2>To make an order?</h2>
+<br>
+<br>
+<h2>To view all baskets</h2>
 <h3>Click <a href="/order/:user_id">Here</a> to do so</h3>

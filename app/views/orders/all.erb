@@ -6,14 +6,13 @@
 <p>Choose from one of the preset gourmet baskets or create your own custom one</p>
 
 <ul><% Basket.all.each do |basket| %>
-</br>
+<br>
     <li><b><%= basket.id%>.</b> <b><%= basket.name.capitalize%>:</b> <i>Contains</i> : <u><%= basket.ingredients%></u></li>
     <% end %>
 </ul>
-</br>
+<br>
 
-<h2>Would you like to make an order?</h2>
-<h3>Click <a href="/order/:user_id">Here</a> to do so</h3>
-<a href="/logout">Logout</a> | <a href ="/show/customs/:user_id">View All Orders</a>
 <p>Would you like to create your custom basket?</p>
-<p><a href="/display/basket/:user_id">Click here!</a><p>
+<p><a href="/basket/new">Click here!</a><p>
+
+<a href="/logout">Logout</a> | <a href ="/show/customs">View All Orders</a>
