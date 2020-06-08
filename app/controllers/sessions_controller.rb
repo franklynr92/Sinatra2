@@ -14,7 +14,7 @@ post "/signup" do
   user.save
   session[:user_id] = user.id
   binding.pry
-  redirect to "/profile/:user_id"
+  redirect to "/profile/#{user.id}"
 end
 
 
