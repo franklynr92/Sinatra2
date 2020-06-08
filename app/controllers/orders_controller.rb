@@ -4,8 +4,7 @@ class OrdersController < ApplicationController
 
 get '/order/:user_id' do
     if logged_in?
-    logged_in_user_id = session[:user_id]
-    @user = User.find_by(id: logged_in_user_id)
+    @user = User.find_by(id: session[:user_id])
         erb :"orders/all"
     else    
         @error = "Invalid credentials"
@@ -23,7 +22,7 @@ end
 
 
 post '/show/:user_id' do
-    binding.pry
+    #binding.pry
     logged_in_user_id = session[:user_id]
     @user = User.find_by(id: logged_in_user_id)
     #pull name from where
@@ -56,7 +55,7 @@ post '/basket/create' do
     @basket = Basket.new
     @basket.name = params[:name]
     @basket.ingredients = params[:ingredients]
-    binding.pry
+    #binding.pry
     @basket.user_id = current_user.id
     @basket.save
     @basket
@@ -81,7 +80,7 @@ end
 put '/basket/create/:user_id' do
     
     basket = Basket.find_by(id: params[:id])
-    binding.pry
+    #binding.pry
     basket.name = params[:name]
     basket.ingredients = params[:ingredients]
     basket.save
@@ -90,7 +89,7 @@ put '/basket/create/:user_id' do
 end
 
 delete '/basket/create/:user_id' do
-    binding.pry
+   # binding.pry
     basket = Basket.find_by(id: params[:baskets])
     basket.destroy
     erb :"orders/display_baskets"

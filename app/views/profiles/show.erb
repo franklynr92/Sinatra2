@@ -6,8 +6,8 @@
 <p> Welcome to <%=@user.name%>'s profile </p>
 <%end%>
 
-<h2>Would you like to make an order?</h2>
-<h3>Click <a href="/order">Here</a> to do so</h3>
+<h2>Would you like to see baskets?</h2>
+<h3>Click <a href="/order/:user_id">Here</a> to do so</h3>
 <a href="/logout">Logout</a> | <a href ="/show/customs">View All Orders</a>
 <% else %>
 <h3>Hey, you need to log in first</h3>

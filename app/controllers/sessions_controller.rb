@@ -13,17 +13,17 @@ post "/signup" do
   user = User.create(params[:user])
   user.save
   session[:user_id] = user.id
-  binding.pry
+ # binding.pry
   redirect to "/profile/#{user.id}"
 end
 
 
 post "/login" do
-    binding.pry
+    #binding.pry
     user = User.find_by(user_name: params[:user][:user_name])
     if user.authenticate(params[:user][:password])
         session[:user_id] = user.id
-        binding.pry
+        #binding.pry
         redirect to "/profile/#{user.id}"
     else
         @error = "Invalid credentials"
