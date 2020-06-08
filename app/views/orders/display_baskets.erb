@@ -1,4 +1,4 @@
-<h1>Baskets available for you to order</h1>
+<h2>Baskets available for you to choose from</h2>
 <ul><% Basket.all.each do |basket| %>
 </br>
     <li><b>ID: <%= basket.id%>.</b> <b><%= basket.name.capitalize%> Basket :</b> <i>Contains</i> : <u><%= basket.ingredients%></u></li>

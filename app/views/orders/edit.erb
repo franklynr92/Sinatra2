@@ -1,4 +1,4 @@
-<h2>Edit customized basket</h2>
+<h2>Edit  your customized basket</h2>
 <h1>These are the baskets</h1>
 
 <ul><% Basket.all.each do |basket| %>
@@ -17,7 +17,7 @@
 <form action ="/basket/create/:user_id" id="basketlist" method ="post" >
 <input type="hidden" name="_method" value="put">
 <br>
-<p>Choose the basket you want to edit</p>
+<p>Choose the basket that you have created that you want to edit</p>
 <label for ="id">Basket: </label>
 <select name="id" >
 <% Basket.all.each do |basket|%>
@@ -36,7 +36,7 @@
 <input type='submit' value="Update basket" />
 </form>
 
-<h3>To Delete a "Gourmet Basket"</h3>
+<h3>To Delete a whole "Gourmet Basket"</h3>
 <form action="/basket/create/:user_id" method="post">
 <input type="hidden" name="_method" value="delete">
 <select name="baskets">
