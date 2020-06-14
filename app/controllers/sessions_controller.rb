@@ -19,8 +19,12 @@ end
 
 
 post "/login" do
-    #binding.pry
+    
     user = User.find_by(user_name: params[:user][:user_name])
+    if user == nil
+        @unknown = "No user found, create an account"
+        erb :"sessions/signup"
+    elsif user != nil
     if user.authenticate(params[:user][:password])
         session[:user_id] = user.id
         #binding.pry
@@ -29,6 +33,7 @@ post "/login" do
         @error = "Invalid credentials"
         erb :"hello"
     end
+end
 end
 
 get '/logout' do

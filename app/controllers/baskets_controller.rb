@@ -3,7 +3,7 @@ class BasketsController < ApplicationController
 
 # '/users/:id/orders 
 
-get '/basket/:user_id' do
+get '/basket' do
     if logged_in?
     @user = User.find_by(id: session[:user_id])
         erb :"baskets/all"
@@ -22,7 +22,7 @@ end
 
 
 #  post '/orders
-post '/show/:user_id' do
+post '/show' do
     #binding.pry
     logged_in_user_id = session[:user_id]
     @user = User.find_by(id: logged_in_user_id)
@@ -47,7 +47,7 @@ get '/basket/new' do
     #params[:user_id]  == 3
     logged_in_user_id = session[:user_id]
     @user = User.find_by(id: logged_in_user_id)
-    erb :"orders/new"
+    erb :"baskets/new"
 end
 
 #post '/basket'
