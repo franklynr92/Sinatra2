@@ -1,11 +1,12 @@
-class OrdersController < ApplicationController
+class BasketsController < ApplicationController
 
 
+# '/users/:id/orders 
 
-get '/order/:user_id' do
+get '/basket/:user_id' do
     if logged_in?
     @user = User.find_by(id: session[:user_id])
-        erb :"orders/all"
+        erb :"baskets/all"
     else    
         @error = "Invalid credentials"
         erb :"hello"
@@ -20,7 +21,7 @@ end
     #with a logged_in? and pull user name || name from there
 
 
-
+#  post '/orders
 post '/show/:user_id' do
     #binding.pry
     logged_in_user_id = session[:user_id]
@@ -39,7 +40,7 @@ post '/show/:user_id' do
     #Basket.find_by(:ingredients => @pick_a_basket => :id)
     
     #find ingredients by their id that is equal to params[:basket] id
-    erb :"orders/show"
+    erb :"baskets/show" #id
 end
 
 get '/basket/new' do
@@ -49,6 +50,7 @@ get '/basket/new' do
     erb :"orders/new"
 end
 
+#post '/basket'
 post '/basket/create' do
     logged_in_user_id = session[:user_id]
     @user = User.find_by(id: logged_in_user_id)
@@ -59,24 +61,29 @@ post '/basket/create' do
     @basket.user_id = current_user.id
     @basket.save
     @basket
-    erb :"orders/display_custom_basket"
+    erb :"baskets/display_custom"
 
 end
 
+# get '/baskets'
 get '/show/customs' do
     logged_in_user_id = session[:user_id]
     @user = User.find_by(id: logged_in_user_id)
-    erb :"orders/display_baskets"
+    erb :"baskets/display"
 end
+
+
+# get '/baskets/edit'
 
 get '/show/customs/edit' do
     
     logged_in_user_id = session[:user_id]
 
     @user = User.find_by(id: logged_in_user_id)
-    erb :"orders/edit"
+    erb :"baskets/edit"
 end
 
+# put '/basket/:id' basket id should be in url not form 
 put '/basket/create/:user_id' do
     
     basket = Basket.find_by(id: params[:id])
@@ -85,14 +92,15 @@ put '/basket/create/:user_id' do
     basket.ingredients = params[:ingredients]
     basket.save
     
-    erb :"orders/display_baskets"
+    erb :"baskets/display"
 end
 
+# delete "/basket/:id" should be id of basket not user
 delete '/basket/create/:user_id' do
    # binding.pry
     basket = Basket.find_by(id: params[:baskets])
     basket.destroy
-    erb :"orders/display_baskets"
+    erb :"baskets/display"
 end
 
 end

@@ -9,6 +9,6 @@ end
 
 use Rack::MethodOverride
 run ApplicationController
-use OrdersController
+use BasketsController
 use ProfilesController
 use SessionsController
