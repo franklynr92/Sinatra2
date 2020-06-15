@@ -2,8 +2,10 @@
 <h1>These are all baskets created</h1>
 
 <ul><% Basket.all.each do |basket| %>
+<% if basket.name %>
 <br>
     <li><b><%= basket.id%>.</b> <b><%= basket.name.capitalize%>:</b> <i>Contains</i> : <u><%= basket.ingredients%></u></li>
+    <% end %>
     <% end %>
 </ul>
 <br>
@@ -14,14 +16,16 @@
 
 
 
-<form action ="/basket/update" id="basketlist" method ="post" >
+<form action ="/baskets/<:id" id="basketlist" method ="post" >
 <input type="hidden" name="_method" value="put">
 <br>
 <p>Choose the basket that you have created that you want to edit</p>
 <label for="id">Basket: </label>
-<select name="id" >
 <% Basket.all.each do |basket|%>
 <% if basket.name != nil && basket.user_id == current_user.id %>
+<select name="<%= @basket.id %>" >
+
+
 <option value="<%= basket.id%>" id="<%= basket.id%>"> <%= basket.id %> <%= basket.name %> Basket. This contains: <%= basket.ingredients%> </option>
  <% end %>
 <% end %>
@@ -37,7 +41,7 @@
 </form>
 
 <h2>To Delete a whole "Gourmet Basket"</h2>
-<form action="/basket/destroy" method="post">
+<form action="/baskets/:id" method="post">
 <input type="hidden" name="_method" value="delete">
 <select name="baskets">
 <% Basket.all.each do |basket|%>

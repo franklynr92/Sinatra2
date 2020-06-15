@@ -6,7 +6,9 @@
 
 <ul><% Basket.all.each do |basket| %>
 <br>
+<% if basket.name %>
     <li><b><%= basket.id%>.</b> <b><%= basket.name.capitalize%>:</b> <i>Contains</i> : <u><%= basket.ingredients%></u></li>
+    <% end %>
     <% end %>
 </ul>
 <br>
@@ -18,7 +20,7 @@
 <hr>
 <br>
 <h3>To make a change to your basket</h3>
-<h4><a href="/show/customized/edit">click here!</a></h4>
+<h4><a href="/show/<%= @basket.id %>/edit">click here!</a></h4>
 <hr>
 <br>
 <h3>To view all baskets ever made</h3>

@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
 
 get "/profile/:user_id" do
    #show their name
-   @user = User.find_by(id: params[:user_id])
+   current_user
 #   binding.pry
    erb :"profiles/show"
 end

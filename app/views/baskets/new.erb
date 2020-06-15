@@ -1,8 +1,10 @@
 <h1>Create your custom gourmet basket</h1>
 <h2>These are what already made</h2>
 <ul><% Basket.all.each do |basket| %>
-</br>
+<% if basket.name%>
+<br>
     <li><b>ID:<%= basket.id%>.</b> <b><%= basket.name.capitalize%> Basket :</b> <i>Contains</i> : <u><%= basket.ingredients%></u></li>
+    <% end %>
     <% end %>
 </ul>
 <br><br><br>
@@ -11,13 +13,13 @@
 <label for="name">Basket Name:</label>
 <input type="text" id="name" name="name" />
 <label for="name">Basket Ingredients: </label>
-<input type="text" id="ingredients" name="ingredients" />
+<input type="text" id="ingredients" name="basket[ingredients]" />
 <input type='submit' value="submit" />
 </form>
 <br>
 <br>
 <br><br><br>
-<h2>To edit your baskets: Click <a href="/show/customized/edit"> Here!</a></h2>
+<h2>To edit your baskets: Click <a href="/show/<%= current_user.id %>/edit"> Here!</a></h2>
 <br>
 
 <br>

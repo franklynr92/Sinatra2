@@ -10,30 +10,35 @@ end
 
 post "/signup" do 
     
-  user = User.create(params[:user])
-  user.save
+  user = User.new(params[:user])
+  #user.errors.full_messages
+  binding.pry
+  if user.save
   session[:user_id] = user.id
- # binding.pry
+ 
   redirect to "/profile/#{user.id}"
+  else
+    erb :"sessions/signup"
+end
 end
 
 
 post "/login" do
-    
+    binding.pry
     user = User.find_by(user_name: params[:user][:user_name])
-    if user == nil
+    if !user
         @unknown = "No user found, create an account"
         erb :"sessions/signup"
-    elsif user != nil
-        
-    if user.authenticate(params[:user][:password])
-        session[:user_id] = user.id
-        #binding.pry
-        redirect to "/profile/#{user.id}"
-    else
-        @error = "Invalid credentials"
-        erb :"hello"
-    end
+    else 
+        if user.authenticate(params[:user][:password])
+            session[:user_id] = user.id
+            #binding.pry
+            redirect to "/profile/#{user.id}"
+        else
+            @error = "Invalid credentials"
+            erb :"hello"
+        end
+        binding.pry
 end
 end
 
