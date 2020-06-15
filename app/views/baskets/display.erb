@@ -1,16 +1,16 @@
 <h2>Baskets available for you to choose from</h2>
 <ul><% Basket.all.each do |basket| %>
-</br>
+<br>
     <li><b>ID: <%= basket.id%>.</b> <b><%= basket.name.capitalize%> Basket :</b> <i>Contains</i> : <u><%= basket.ingredients%></u></li>
     <% end %>
 </ul>
-</br>
+<br>
 <h2>Click <a href="/basket/new">Here</a> to create a basket</h2>
 
-</br>
+<br>
 
 
-<p>To edit a basket <a href="/show/customs/edit">click here</a> </p>
+<p>To edit a basket <a href="/show/customized/edit">click here</a> </p>
 
 <br><br>
 <p><a href="/logout">Logout</a></p> | <a href="/profile/<%= current_user.id %>">Click here to go back to your profile</a>

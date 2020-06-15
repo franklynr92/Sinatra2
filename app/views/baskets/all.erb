@@ -2,7 +2,7 @@
 <h1>Hello  <%= @user.name %> !</h1>
 <h3>Here are all the baskets</h3>
  <% end %>
-<p>Choose from one of the preset gourmet baskets or create your own custom one</p>
+
 
 <ul><% Basket.all.each do |basket| %>
 <br>
@@ -11,10 +11,23 @@
 </ul>
 <br>
 
-<p>Would you like to create your custom basket?</p>
-<p><a href="/basket/new">Click here!</a><p>
 
-<a href="/logout">Logout</a> | <a href ="/show/customs">View All Baskets</a>
+<hr>
+<h3>Feeling Creative?</h3>
+<h4>Click <a href="/basket/new">Here</a> to do so</h4>
+<hr>
+<br>
+<h3>To make a change to your basket</h3>
+<h4><a href="/show/customized/edit">click here!</a></h4>
+<hr>
+<br>
+<h3>To view all baskets ever made</h3>
+<h4>Click <a href="/basket">Here</a></h4>
+<hr>
+<br>
+<hr>
+<br>
+<a href ="/show/customs">View All Baskets</a>
 
 <br><br>
-<p><a href="/logout">Logout</a></p> | <a href="/profile/<%= current_user.id %>">Click here to go back to your profile</a>
+<a href="/logout">Logout</a> | <a href="/profile/<%= current_user.id %>">Click here to go back to your profile</a>

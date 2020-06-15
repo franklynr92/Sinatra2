@@ -13,6 +13,9 @@ get '/basket' do
     end
 end
    
+get '/orders' do
+    erb :"baskets/display"
+end
     
     #if @current_user 
     #erb :"orders/order" 
@@ -20,7 +23,7 @@ end
     #get the name of the user to show, possibly use in conjuction
     #with a logged_in? and pull user name || name from there
 
-
+=begin
 #  post '/orders
 post '/show' do
     #binding.pry
@@ -36,13 +39,13 @@ post '/show' do
     @pick_an_ingredient = ingredients_are.first.ingredients
     #@ingredients_are
     #Basket.find_by_name(@pick_a_basket)
-    
+    #this should be use on the orders controller
     #Basket.find_by(:ingredients => @pick_a_basket => :id)
     
     #find ingredients by their id that is equal to params[:basket] id
     erb :"baskets/show" #id
 end
-
+=end
 get '/basket/new' do
     #params[:user_id]  == 3
     logged_in_user_id = session[:user_id]
@@ -64,7 +67,7 @@ post '/basket/create' do
 end
 
 # get '/baskets'
-get '/show/customs' do
+get '/show/baskets' do
     logged_in_user_id = session[:user_id]
     @user = User.find_by(id: logged_in_user_id)
     erb :"baskets/display"
@@ -73,7 +76,7 @@ end
 
 # get '/baskets/edit'
 
-get '/show/customs/edit' do
+get '/show/customized/edit' do
     
     logged_in_user_id = session[:user_id]
 

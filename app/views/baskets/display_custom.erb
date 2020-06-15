@@ -5,9 +5,18 @@
 </div>
 <p>it has the following ID: <%= @basket.id %></p>
 
-<a href="/show/customs">display baskets page</a>
-
-<h2>Would you like to make a basket?</h2>
-<h3>Click <a href="/basket/new">Here</a> to do so</h3>
-
+<a href="/show/baskets">display baskets page</a>
+<hr>
+<h3>Feeling Creative?</h3>
+<h4>Click <a href="/basket/new">Here</a> to do so</h4>
+<hr>
+<br>
+<h3>To make a change to your basket</h3>
+<h4><a href="/show/customized/edit">click here!</a></h4>
+<hr>
+<br>
+<h3>To view all baskets ever made</h3>
+<h4>Click <a href="/basket">Here</a></h4>
+<hr>
+<br>
 <p><a href="/logout">Logout</a></p> | <a href="/profile/<%= current_user.id %>">Click here to go back to your profile</a>

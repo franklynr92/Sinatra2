@@ -5,6 +5,7 @@ Currently it can only create baskets.
 There is an order model for future and stretch goals to create an actual order.
 run bundle install to install proper gems
 and run shotgun to run website.
+Currently can only make baskets and create an account, orders are not available yet.
 
 ## Contributing
 

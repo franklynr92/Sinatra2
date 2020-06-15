@@ -1,13 +1,13 @@
-<h2>Edit  your customized basket</h2>
-<h1>These are the baskets</h1>
+<h2>Edit your customized basket</h2>
+<h1>These are all baskets created</h1>
 
 <ul><% Basket.all.each do |basket| %>
-</br>
+<br>
     <li><b><%= basket.id%>.</b> <b><%= basket.name.capitalize%>:</b> <i>Contains</i> : <u><%= basket.ingredients%></u></li>
     <% end %>
 </ul>
-</br>
-<h3>To update a "Gourmet Basket"</h3>
+<br>
+<h2>To update your customized "Gourmet Basket"</h2>
 
 
 
@@ -36,7 +36,7 @@
 <input type='submit' value="Update basket" />
 </form>
 
-<h3>To Delete a whole "Gourmet Basket"</h3>
+<h2>To Delete a whole "Gourmet Basket"</h2>
 <form action="/basket/destroy" method="post">
 <input type="hidden" name="_method" value="delete">
 <select name="baskets">
@@ -49,8 +49,12 @@
 <input type="submit" value="delete" />
 </form>
 
-
-<h2>Would you like to create a basket?</h2>
-<h3>Click <a href="/basket/new">Here</a> to do so</h3>
+<br><br><br>
+<hr>
+<br>
+<h3>Feeling Creative?</h3>
+<h4>Click <a href="/basket/new">Here</a> to do so</h4>
+<hr>
+<br>
 <br><br>
-<p><a href="/logout">Logout</a></p> | <a href="/profile/<%= current_user.id %>">Click here to go back to your profile</a>
+<a href="/logout">Logout</a> | <a href="/profile/<%= current_user.id %>">Click here to go back to your profile</a>
