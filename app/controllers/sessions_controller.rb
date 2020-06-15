@@ -25,6 +25,7 @@ post "/login" do
         @unknown = "No user found, create an account"
         erb :"sessions/signup"
     elsif user != nil
+        
     if user.authenticate(params[:user][:password])
         session[:user_id] = user.id
         #binding.pry

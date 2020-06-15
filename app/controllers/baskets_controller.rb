@@ -57,12 +57,10 @@ post '/basket/create' do
     @basket = Basket.new
     @basket.name = params[:name]
     @basket.ingredients = params[:ingredients]
-    #binding.pry
     @basket.user_id = current_user.id
     @basket.save
     @basket
     erb :"baskets/display_custom"
-
 end
 
 # get '/baskets'
@@ -84,10 +82,10 @@ get '/show/customs/edit' do
 end
 
 # put '/basket/:id' basket id should be in url not form 
-put '/basket/create/:user_id' do
+put '/basket/update' do
     
     basket = Basket.find_by(id: params[:id])
-    #binding.pry
+    binding.pry
     basket.name = params[:name]
     basket.ingredients = params[:ingredients]
     basket.save
@@ -96,7 +94,7 @@ put '/basket/create/:user_id' do
 end
 
 # delete "/basket/:id" should be id of basket not user
-delete '/basket/create/:user_id' do
+delete '/basket/destroy' do
    # binding.pry
     basket = Basket.find_by(id: params[:baskets])
     basket.destroy

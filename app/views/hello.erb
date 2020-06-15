@@ -1,7 +1,7 @@
 <h1>Welcome to Gracious Gourmet!<h1>
 <h2>Your one stop shop for your last minute Gourmet Basket needs</h2>
-<h2 style="color:red;"><% if @error %></h2>
-<%= @error %>
+<% if @error %>
+<h2 style="color:red;"><%= @error %></h2>
 <% end %>
 
 

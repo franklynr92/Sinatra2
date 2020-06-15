@@ -14,11 +14,11 @@
 
 
 
-<form action ="/basket/create/:user_id" id="basketlist" method ="post" >
+<form action ="/basket/update" id="basketlist" method ="post" >
 <input type="hidden" name="_method" value="put">
 <br>
 <p>Choose the basket that you have created that you want to edit</p>
-<label for ="id">Basket: </label>
+<label for="id">Basket: </label>
 <select name="id" >
 <% Basket.all.each do |basket|%>
 <% if basket.name != nil && basket.user_id == current_user.id %>
@@ -37,7 +37,7 @@
 </form>
 
 <h3>To Delete a whole "Gourmet Basket"</h3>
-<form action="/basket/create/:user_id" method="post">
+<form action="/basket/destroy" method="post">
 <input type="hidden" name="_method" value="delete">
 <select name="baskets">
 <% Basket.all.each do |basket|%>
@@ -49,6 +49,8 @@
 <input type="submit" value="delete" />
 </form>
 
-<a href="/profile/:user_id">Click here to go back to your profile</a>
+
 <h2>Would you like to create a basket?</h2>
 <h3>Click <a href="/basket/new">Here</a> to do so</h3>
+<br><br>
+<p><a href="/logout">Logout</a></p> | <a href="/profile/<%= current_user.id %>">Click here to go back to your profile</a>
