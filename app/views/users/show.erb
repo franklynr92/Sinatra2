@@ -1,14 +1,15 @@
 <% if @user %>
-<h1>Hello there <%= current_user.name   %>!</h1>
+<h1>Hello there <%= current_user.name %>!</h1>
 <% if @user.id == session[:user_id] %>
 <p>This is your profile page</p>
 <% else %>
+
 <p> Welcome to <%=@user.name%>'s profile </p>
 <%end%>
-
+<p>Baskets that you made<a href=#>click here</a></p>
 <h2>To see all baskets</h2>
-<h3>Click <a href="/basket">Here</a> to do so</h3>
-<a href="/logout">Logout</a> | <a href ="/basket/new">Make Changes to basket</a>
+<h3>Click <a href="/baskets">Here</a> to do so</h3>
+<a href="/logout">Logout</a> | <a href ="/baskets/new">Make Changes to basket</a>
 <% else %>
 <h3>Hey, you need to log in first</h3>
 <a href="/signup">Sign Up</a> | <a href ="/login">Login</a>

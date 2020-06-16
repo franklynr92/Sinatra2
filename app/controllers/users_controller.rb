@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
 
 
-get "/user/:user_id" do
+get "/users/:user_id" do
    #show their name
    @user = User.find_by(id: params[:user_id])
-#   binding.pry
+   #binding.pry
+   #working
    erb :"users/show"
 end
 

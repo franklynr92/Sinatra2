@@ -16,7 +16,7 @@
 
 
 <%binding.pry%>
-<form action ="/baskets/<%= current_user.id %>" id="basketlist" method ="post" >
+<form action =<%= "/baskets/#{@basket.id} "%> id="basketlist" method ="post" >
 <input type="hidden" name="_method" value="put">
 <br>
 <p>Choose the basket that you have created that you want to edit</p>
@@ -26,8 +26,8 @@
 <select>
 <% @baskets.each do |basket|%>
 
-<option value="<%= basket.id%>" id="<%= basket.id%>"> <%= basket.id %> <%= basket.name %> Basket. This contains: <%= basket.ingredients%> </option>
- <% end %>
+<option value="<%= basket.id%>" id="<%= basket.id %>" name="basket[name]"><%= basket.name %> Basket</option>
+<% end %>
 
 </select>
 <br> <br>
@@ -41,7 +41,7 @@
 </form>
 
 <h2>To Delete a whole "Gourmet Basket"</h2>
-<form action="/baskets/:id" method="post">
+<form action="/baskets/:basket_id" method="post">
 <input type="hidden" name="_method" value="delete">
 <select name="basket">
 <% @baskets.each do |basket|%>
@@ -56,7 +56,7 @@
 <hr>
 <br>
 <h3>Feeling Creative?</h3>
-<h4>Click <a href="/basket/new">Here</a> to do so</h4>
+<h4>Click <a href="/baskets/new">Here</a> to do so</h4>
 <hr>
 <br>
 <br><br>

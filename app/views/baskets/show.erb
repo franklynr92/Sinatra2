@@ -1,9 +1,9 @@
-<p>This is your new custom <b><%= @basket.name.capitalize %></b> basket you have created</p>
-<p>Your basket has the following:</br>
-<div> 
-<%= @basket.ingredients %></p>
-</div>
-<p>it has the following ID: <%= @basket.id %></p>
+<p>This is your new custom <b><%= @basket.last.name %></b> basket you have created</p>
+<p>Your basket has the following:<br>
+ <%= @basket.last.ingredient %>
+</p>
+
+<p>it has the following ID: <%= @basket.last.id %></p>
 
 <a href="/show/baskets">display baskets page</a>
 <hr>
@@ -12,7 +12,7 @@
 <hr>
 <br>
 <h3>To make a change to your basket</h3>
-<h4><a href="/show/<%= current_user.id %>/edit">click here!</a></h4>
+
 <hr>
 <br>
 <h3>To view all baskets ever made</h3>
