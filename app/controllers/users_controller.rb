@@ -1,11 +1,11 @@
-class ProfilesController < ApplicationController
+class UsersController < ApplicationController
 
 
-get "/profile/:user_id" do
+get "/user/:user_id" do
    #show their name
-   current_user
+   @user = User.find_by(id: params[:user_id])
 #   binding.pry
-   erb :"profiles/show"
+   erb :"users/show"
 end
 
   #or a show page

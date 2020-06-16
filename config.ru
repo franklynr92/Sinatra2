@@ -10,5 +10,5 @@ end
 use Rack::MethodOverride
 run ApplicationController
 use BasketsController
-use ProfilesController
+use UsersController
 use SessionsController

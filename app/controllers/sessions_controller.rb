@@ -33,7 +33,7 @@ post "/login" do
         if user.authenticate(params[:user][:password])
             session[:user_id] = user.id
             #binding.pry
-            redirect to "/profile/#{user.id}"
+            redirect to "/user/#{user.id}"
         else
             @error = "Invalid credentials"
             erb :"hello"
@@ -46,9 +46,6 @@ get '/logout' do
     session[:user_id] = nil
     redirect to "/"
 end
-
-
-
 
 
 end

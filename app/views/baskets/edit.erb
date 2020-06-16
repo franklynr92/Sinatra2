@@ -15,39 +15,38 @@
 
 
 
-
-<form action ="/baskets/<:id" id="basketlist" method ="post" >
+<%binding.pry%>
+<form action ="/baskets/<%= current_user.id %>" id="basketlist" method ="post" >
 <input type="hidden" name="_method" value="put">
 <br>
 <p>Choose the basket that you have created that you want to edit</p>
 <label for="id">Basket: </label>
-<% Basket.all.each do |basket|%>
-<% if basket.name != nil && basket.user_id == current_user.id %>
-<select name="<%= @basket.id %>" >
 
+
+<select>
+<% @baskets.each do |basket|%>
 
 <option value="<%= basket.id%>" id="<%= basket.id%>"> <%= basket.id %> <%= basket.name %> Basket. This contains: <%= basket.ingredients%> </option>
  <% end %>
-<% end %>
+
 </select>
 <br> <br>
 <p>Edit the "Basket Name" you selected <p>
 <label for="name">Basket Name:</label>
-<input type="text" name="name"   />
+<input type="text" name="basket[name]"   />
 <p>Edit the "Basket Ingredients" you selected <p>
 <label for="ingredients">Basket Ingredients: </label>
-<input type="text" name="ingredients"  />
+<input type="text" name="basket[ingredients]"  />
 <input type='submit' value="Update basket" />
 </form>
 
 <h2>To Delete a whole "Gourmet Basket"</h2>
 <form action="/baskets/:id" method="post">
 <input type="hidden" name="_method" value="delete">
-<select name="baskets">
-<% Basket.all.each do |basket|%>
-<% if basket.name !=nil && basket.user_id == current_user.id %>
+<select name="basket">
+<% @baskets.each do |basket|%>
+
 <option value="<%= basket.id %>" id="<%= basket.id %>" name="<%= basket.name %>">  <%= basket.id %>: <%= basket.name %> Basket. This contains: <%= basket.ingredients %> </option>
-<% end %>
 <% end %>
 </select>
 <input type="submit" value="delete" />
@@ -61,4 +60,4 @@
 <hr>
 <br>
 <br><br>
-<a href="/logout">Logout</a> | <a href="/profile/<%= current_user.id %>">Click here to go back to your profile</a>
+<a href="/logout">Logout</a> | <a href="/user/<%= current_user.id %>">Click here to go back to your profile</a>

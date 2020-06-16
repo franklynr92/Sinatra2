@@ -5,8 +5,8 @@ class BasketsController < ApplicationController
 
 get '/baskets' do
     if logged_in?
-    current_user
-        erb :"baskets/all"
+        current_user
+        erb :"baskets/index"
     else    
         @error = "Invalid credentials"
         erb :"hello"
@@ -53,68 +53,80 @@ get '/basket/new' do
 end
 
 #post '/basket'
+#better utilize AR methods to create associated records
 post '/basket/create' do
     # utilize existing helpers
    current_user
-    #better utilize AR methods to create associated records
+    
     @basket = Basket.create(params)
     binding.pry
     #@basket.name = params[:name]
     #@basket.ingredients = params[:ingredients]
     @basket.user_id = current_user.id
+    #current_basket = Basket.where(user_id: current_user.id)
     #@basket.save
     #@basket
-    erb :"baskets/display_custom"
+    erb :"baskets/display_creation"
 end
 
 # get '/baskets'
+=begin
 get '/show/all_baskets' do
     current_user
     @baskets = current_user.baskets
     # then just render @baskets in the view
     erb :"baskets/display"
 end
-
+=end
 
 # get '/baskets/edit'
 #baskets/:id/edit
-get '/show/:id/edit' do
-    
-    current_user
-    erb :"baskets/edit"
+get '/show/:user_id/edit' do
+    if current_user
+        @baskets = current_basket
+      binding.pry
+    #current_basket.ids
+
+      erb :"baskets/edit"
+    end
 end
 
 # put '/basket/:id' basket id should be in url not form 
 # follow REST - put '/basket/:id'
-put '/baskets/:id' do
+put '/baskets/:user_id' do
     #create helper method - set_basket
     basket = Basket.find_by(id: params[:id])
     #find_basket
     binding.pry
     #find_basket.update
-    basket.update
-    #AR .update
-    #basket.name = params[:name]
-    #basket.ingredients = params[:ingredients]
-    #basket.save
+    #basket.update
     
+    #AR .update
+    basket.name = params[:name]
+    basket.ingredients = params[:ingredients]
+    basket.save
     redirect "baskets/display"
+    
 end
 
 # delete "/basket/:id" should be id of basket not user
 # follow REST - delete '/basket/:id'
-delete '/basket/:id' do
+delete '/basket/:user_id' do
     #add authorization - is current_user == basket.user?
    # binding.pry
-    find_basket
+   @basket = Basket.find_by_id(params[:baskets]) 
     binding.pry
-    find_basket.destroy
+    @basket.destroy
     redirect "baskets/display"
 end
 
 helpers do
     def find_basket
         @basket = Basket.find_by_id(params[:baskets]) 
+    end
+
+    def current_basket
+        @current_basket = Basket.where(user_id: current_user.id)
     end
 end
 

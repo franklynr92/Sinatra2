@@ -11,7 +11,7 @@
 <h2><b>Create a Basket<b></h2>
 <form action ="/basket/create" method = "post">
 <label for="name">Basket Name:</label>
-<input type="text" id="name" name="name" />
+<input type="text" id="name" name="basket[name]" />
 <label for="name">Basket Ingredients: </label>
 <input type="text" id="ingredients" name="basket[ingredients]" />
 <input type='submit' value="submit" />
@@ -23,4 +23,4 @@
 <br>
 
 <br>
-<a href="/logout">Logout</a> | <a href="/profile/<%= current_user.id %>">Click here to go back to your profile</a>
+<a href="/logout">Logout</a> | <a href="/user/<%= current_user.id %>">Click here to go back to your profile</a>
