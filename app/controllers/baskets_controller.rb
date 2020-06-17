@@ -45,7 +45,7 @@ class BasketsController < ApplicationController
             binding.pry
         redirect to "/baskets/#{@basket.id}"
             else
-                @created = "This basket name has been taken"
+                created_message
                 erb :"baskets/new"
         end
     end
@@ -113,5 +113,13 @@ class BasketsController < ApplicationController
         def basket_made
             Basket.all.find_by(name: params[:basket][:name])
         end
+
+        def created_message
+            <<-HEREDOC 
+        This basket name has been taken. 
+        Please pick another name!!
+            HEREDOC
+        end
+
     end
 end

@@ -1,5 +1,6 @@
 <h1>Create your custom gourmet basket</h1>
 <h2>These are what already made</h2>
+
 <ul><% Basket.all.each do |basket| %>
 <% if basket.name%>
 <br>
@@ -8,6 +9,9 @@
     <% end %>
 </ul>
 <br><br><br>
+<% if created_message %>
+<h2 style="color:red;"><%= created_message %></h2>
+<% end %>
 <h2><b>Create a Basket<b></h2>
 <form action ="/baskets" method = "post">
 <label for="name">Basket Name:</label>
