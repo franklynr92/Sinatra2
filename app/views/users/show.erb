@@ -3,10 +3,9 @@
 <% if @user.id == session[:user_id] %>
 <p>This is your profile page</p>
 <% else %>
-
 <p> Welcome to <%=@user.name%>'s profile </p>
 <%end%>
-<p>Baskets that you made <a href="<%= "/users/#{current_user.id}/baskets" %>"> click here</a></p>
+
 <br>
 <h3>To see all baskets</h3>
 <h2>Click <a href="/baskets">Here</a> to do so</h2>

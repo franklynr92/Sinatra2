@@ -16,19 +16,19 @@ class BasketsController < ApplicationController
     get '/baskets/new' do
         #params[:user_id]  == 3
         if logged_in?
-        current_user
-        erb :"baskets/new"
+            current_user
+            erb :"baskets/new"
         end
     end
 #show
     get '/baskets/:id' do
 
         if logged_in?
-            
-        @basket = Basket.find_by(id: params[:id])
-        binding.pry
-        # then just render @baskets in the view
-        erb :"baskets/show_basket"
+            current_user
+            @basket = Basket.find_by(id: params[:id])
+            binding.pry
+            # then just render @baskets in the view
+            erb :"baskets/show_basket"
         end
     end
 
@@ -38,15 +38,17 @@ class BasketsController < ApplicationController
     post '/baskets' do
         # utilize existing helpers
         if logged_in? 
-            if !basket_made
-            @basket = Basket.create(params[:basket])
-            @basket.user_id = current_user.id
-            @basket.save
+            current_user
             binding.pry
-        redirect to "/baskets/#{@basket.id}"
-            else
+        if  !!basket_made
                 created_message
                 erb :"baskets/new"
+        else
+                @basket = Basket.create(params[:basket])
+                @basket.user_id = current_user.id
+                @basket.save
+                binding.pry
+                redirect to "/baskets/#{@basket.id}"
         end
     end
     end
@@ -71,6 +73,7 @@ class BasketsController < ApplicationController
     # Is it showing something pertaining to baskets or users?
     get "/baskets/:id/edit" do
         if logged_in?
+            current_user
             @basket = Basket.find_by(id: params[:id])
             erb :"baskets/edit"
         end
@@ -80,18 +83,17 @@ class BasketsController < ApplicationController
 
     # put '/basket/:id' basket id should be in url not form 
     # follow REST - put '/basket/:id'
+    #update
     put "/baskets/:id" do
         if logged_in?
         #create helper method - set_basket
+        current_user
         @basket = Basket.find_by_id(params[:id]) 
-        @basket.update(params[:basket])
-            @basket
-            #@basket.name = params[:basket][:name]
-            #@basket.ingredients = params[:basket][:ingredients]
-            #@basket.save
+        if !!@basket.update(params[:basket])
             updated_message
             redirect to "/baskets/#{@basket.id}"
         end
+    end
     end
 
     # delete "/basket/:id" should be id of basket not user
@@ -101,36 +103,19 @@ class BasketsController < ApplicationController
         #@basket = Basket.find_by_id(params[:basket]) 
             #find_basket.destroy
             @basket = Basket.find_by_id(params[:id]) 
-            @basket.destroy
-            deleted_message
-            redirect to "/baskets"
+            if  !!@basket.destroy
+                deleted_message
+                redirect to "/baskets"
+            end
         end
     end
 
     helpers do
         def basket_made
-            Basket.all.find_by(name: params[:basket][:name])
+            Basket.find_by(name: params[:basket][:name])
         end
 
-        def created_message
-            <<-HEREDOC 
-        This basket name has been taken. 
-            Please pick another name!!
-            HEREDOC
-        end
-
-        def deleted_message
-            <<-HEREDOC 
-        This basket has been deleted. 
-        Would you like to create another?!!
-            HEREDOC
-        end
-        def updated_message
-            <<-HEREDOC 
-        This basket has been updated. 
-        What would you like to do now?
-            HEREDOC
-        end
+       
 
     end
 end
