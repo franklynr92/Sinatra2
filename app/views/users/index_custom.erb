@@ -4,7 +4,7 @@
 <ul>
 <% current_basket.each do |basket|%>
 
-<li><a href="<%= "/baskets/#{basket.id}"%>" ><b>Name:<%= basket.name %></b></a> <b>This contains:</b> <%= basket.ingredients%></li>
+<li><b>Name: <a href="<%= "/baskets/#{basket.id}"%>" ></b><%= basket.name %></a> <b>This contains:</b> <%= basket.ingredients%></li>
 <br>
 <%end%>
 </ul>

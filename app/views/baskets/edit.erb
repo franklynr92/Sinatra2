@@ -53,4 +53,5 @@
 <hr>
 <br>
 <br><br>
-<a href="/logout">Logout</a> | <a href="/user/<%= current_user.id %>">Click here to go back to your profile</a>
+
+<a href="/logout">Logout</a> | <a href="<%= "/users/#{current_user.id}"%>">Click here to go back to your profile</a>

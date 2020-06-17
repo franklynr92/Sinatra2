@@ -3,6 +3,9 @@
 <h3>Here are all the baskets</h3>
  <% end %>
 
+<% if deleted_message %>
+<h2 style="color:red;"><%= deleted_message %></h2>
+<% end %>
 
 <ul><% @baskets.all.each do |basket| %>
 <br>

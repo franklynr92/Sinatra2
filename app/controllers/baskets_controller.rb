@@ -72,7 +72,6 @@ class BasketsController < ApplicationController
     get "/baskets/:id/edit" do
         if logged_in?
             @basket = Basket.find_by(id: params[:id])
-            binding.pry
             erb :"baskets/edit"
         end
     end
@@ -86,25 +85,27 @@ class BasketsController < ApplicationController
         #create helper method - set_basket
         @basket = Basket.find_by_id(params[:id]) 
         @basket.update(params[:basket])
-        @basket
-        binding.pry
-        #@basket.name = params[:basket][:name]
-        #@basket.ingredients = params[:basket][:ingredients]
-        #@basket.save
-        redirect to "/baskets/#{@basket.id}"
+            @basket
+            #@basket.name = params[:basket][:name]
+            #@basket.ingredients = params[:basket][:ingredients]
+            #@basket.save
+            redirect to "/baskets/#{@basket.id}"
+        else
+                created_message
+                erb :"/baskets/#{@basket.id}/edit"
         end
     end
 
     # delete "/basket/:id" should be id of basket not user
     # follow REST - delete '/basket/:id'
     delete '/baskets/:id' do
-        #add authorization - is current_user == basket.user?
         if logged_in?
         #@basket = Basket.find_by_id(params[:basket]) 
             #find_basket.destroy
             @basket = Basket.find_by_id(params[:id]) 
             binding.pry
             @basket.destroy
+            deleted_message
             redirect to "/baskets"
         end
     end
@@ -117,9 +118,15 @@ class BasketsController < ApplicationController
         def created_message
             <<-HEREDOC 
         This basket name has been taken. 
-        Please pick another name!!
+            Please pick another name!!
             HEREDOC
         end
 
+        def deleted_message
+            <<-HEREDOC 
+        This basket has been deleted. 
+        Would you like to create another?!!
+            HEREDOC
+        end
     end
 end
