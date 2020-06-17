@@ -66,6 +66,7 @@ end
 #to answer that question we must ask what is it showing:
 # Is it showing something pertaining to baskets or users?
 get "/baskets/:id/edit" do
+    binding.pry
     if logged_in?
         @baskets = current_basket
         @baskets
