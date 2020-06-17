@@ -16,7 +16,7 @@
 
 
 <%binding.pry%>
-<form action =<%= "/baskets/#{@basket.id} "%> id="basketlist" method ="post" >
+<form action =<%= "/baskets/#{current_basket.ids} "%> id="basketlist" method ="post" >
 <input type="hidden" name="_method" value="put">
 <br>
 <p>Choose the basket that you have created that you want to edit</p>

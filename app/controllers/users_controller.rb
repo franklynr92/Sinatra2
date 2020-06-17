@@ -9,6 +9,16 @@ get "/users/:user_id" do
    erb :"users/show"
 end
 
+get '/users/:id/baskets' do
+  binding.pry
+  if logged_in?
+      current_user
+      @baskets = find_baskets
+  #@baskets = Basket.find_by(user_id: current_user.id)
+  erb :"users/index_custom"
+end
+end
+
   #or a show page
   #authorization
   #forms for the orders

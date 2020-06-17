@@ -1,3 +1,7 @@
 <h2>The <%= @basket.name%> Basket</h2>
 This contains:
 <h2><%= @basket.ingredients%></h2>
+
+<h3>To see the baskets you have made</h3>
+
+<h2>Click <a href="<%= "/users/#{current_user.id}/baskets" %>">Here</a></h2>

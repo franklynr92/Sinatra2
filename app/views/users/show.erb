@@ -6,12 +6,12 @@
 
 <p> Welcome to <%=@user.name%>'s profile </p>
 <%end%>
-<p>Baskets that you made <a href=#> click here</a></p>
+<p>Baskets that you made <a href="<%= "/users/#{current_user.id}/baskets" %>"> click here</a></p>
 <br>
 <h3>To see all baskets</h3>
 <h2>Click <a href="/baskets">Here</a> to do so</h2>
 <h3>To see the baskets you have made</h3>
-<h2>Click <a href="#">Here</a></h2>
+<h2>Click <a href="<%= "/users/#{current_user.id}/baskets" %>">Here</a></h2>
 <br><br>
 <a href="/logout">Logout</a> | <a href ="/baskets/new">Feeling creative</a>
 <% else %>

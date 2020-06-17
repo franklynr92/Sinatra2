@@ -1,0 +1,10 @@
+class BasketsControlller < ApplicaitonController
+   #if @current_user 
+    #erb :"orders/order" 
+
+    #get the name of the user to show, possibly use in conjuction
+    #with a logged_in? and pull user name || name from there
+    
+    # '/users/:id/orders 
+
+end
