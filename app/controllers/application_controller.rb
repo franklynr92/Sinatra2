@@ -40,6 +40,11 @@ end
   def find_basket
     @basket = Basket.find_by_id(params[:basket]) 
   end
+
+  def find_basket
+    @basket = Basket.find_by_id(params[:basket]) 
+  end
+  
     def current_basket
       @current_basket = Basket.where(user_id: current_user.id)
     end

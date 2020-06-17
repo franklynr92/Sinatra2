@@ -65,7 +65,7 @@ end
 #move this to user controller? 
 #to answer that question we must ask what is it showing:
 # Is it showing something pertaining to baskets or users?
-get "/baskets/:basket.user_id/edit" do
+get "/baskets/:id/edit" do
     if logged_in?
         @baskets = current_basket
         @baskets

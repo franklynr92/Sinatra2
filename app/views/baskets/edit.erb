@@ -2,7 +2,7 @@
 <h1>These are all baskets created</h1>
 
 <ul><% Basket.all.each do |basket| %>
-<% if basket.name %>
+<% if basket.name && basket.user_id == current_user.id %>
 <br>
     <li><b><%= basket.id%>.</b> <b><%= basket.name.capitalize%>:</b> <i>Contains</i> : <u><%= basket.ingredients%></u></li>
     <% end %>
@@ -26,7 +26,7 @@
 <select>
 <% @baskets.each do |basket|%>
 
-<option value="<%= basket.id%>" id="<%= basket.id %>" name="basket[name]"><%= basket.name %> Basket</option>
+<option value="<%= basket.id%>" id="<%= basket.id %>" name="<%= basket.id %>"><%= basket.name %> Basket</option>
 <% end %>
 
 </select>
