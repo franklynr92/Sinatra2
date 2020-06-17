@@ -85,13 +85,13 @@ class BasketsController < ApplicationController
         if logged_in?
         #create helper method - set_basket
         @basket = Basket.find_by_id(params[:id]) 
-        binding.pry
         @basket.update(params[:basket])
         @basket
+        binding.pry
         #@basket.name = params[:basket][:name]
         #@basket.ingredients = params[:basket][:ingredients]
         #@basket.save
-        redirect to "baskets/:id"
+        redirect to "/baskets/#{@basket.id}"
         end
     end
 
