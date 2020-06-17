@@ -9,8 +9,8 @@ get "/users/:user_id" do
    erb :"users/show"
 end
 
+#users baskets and customized
 get '/users/:id/baskets' do
-  
   if logged_in?
     binding.pry
       #current_user

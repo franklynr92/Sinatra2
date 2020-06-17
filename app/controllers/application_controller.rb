@@ -30,20 +30,17 @@ end
 
     def find_baskets
       if Basket.empty?
-        Basket.save
-        @basket= Basket
+        @basket = Basket.save
       else
       Basket.find_by(user_id: current_user.id) 
     end
   end
 
   def find_basket
-    @basket = Basket.find_by_id(params[:basket]) 
+    @basket = Basket.find_by_id(params[:id]) 
+    @basket.update(params[:basket])
   end
 
-  def find_basket
-    @basket = Basket.find_by_id(params[:basket]) 
-  end
 
     def current_basket
       @current_basket = Basket.all.where(user_id: current_user.id)

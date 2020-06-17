@@ -1,6 +1,9 @@
+
 <h2>The <%= @basket.name%> Basket</h2>
-This contains:
-<h2><%= @basket.ingredients%></h2>
+<h3>This contains:</h3>
+<p><%= @basket.ingredients%></p>
+<hr>
+<br>
 
 <h3>To see the baskets you have made</h3>
 
@@ -8,5 +11,5 @@ This contains:
 
 
 <h3>To make a change to your basket</h3>
-<h4><a href="/baskets/:basket.user_id/edit">click here!</a></h4>
+<h4><a href="<%= "/baskets/#{@basket.id}/edit" %>">click here!</a></h4>
 <br>
