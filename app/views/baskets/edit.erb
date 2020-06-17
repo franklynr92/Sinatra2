@@ -1,7 +1,7 @@
 <h2>Edit your customized basket</h2>
 <h1>These are all baskets created</h1>
 
-<ul><% Basket.all.each do |basket| %>
+<ul><% @baskets.each do |basket| %>
 <% if basket.name && basket.user_id == current_user.id %>
 <br>
     <li><b><%= basket.id%>.</b> <b><%= basket.name.capitalize%>:</b> <i>Contains</i> : <u><%= basket.ingredients%></u></li>
@@ -13,18 +13,18 @@
 
 
 
-
+<% @baskets.each do |basket|%>
 
 <%binding.pry%>
-<form action =<%= "/baskets/#{current_basket.ids} "%> id="basketlist" method ="post" >
+<form action =<%= "/baskets/#{basket.id} "%> id="basketlist" method ="post" >
 <input type="hidden" name="_method" value="put">
 <br>
 <p>Choose the basket that you have created that you want to edit</p>
-<label for="id">Basket: </label>
+<label for="<%= basket.id%>">Basket: </label>
 
 
-<select>
-<% @baskets.each do |basket|%>
+<select id="<%= basket.id%>">
+
 
 <option value="<%= basket.id%>" id="<%= basket.id %>" name="<%= basket.id %>"><%= basket.name %> Basket</option>
 <% end %>

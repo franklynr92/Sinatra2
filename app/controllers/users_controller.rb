@@ -10,10 +10,11 @@ get "/users/:user_id" do
 end
 
 get '/users/:id/baskets' do
-  binding.pry
+  
   if logged_in?
-      current_user
-      @baskets = find_baskets
+    binding.pry
+      #current_user
+      @baskets = Basket.find_by(user_id: params[:id])
   #@baskets = Basket.find_by(user_id: current_user.id)
   erb :"users/index_custom"
 end

@@ -1,8 +1,18 @@
 
-<>
-<p><%= current_basket%></p>
-<p><%= find_baskets.name%></p>
-<p><%= find_baskets.ingredients%></p>
+<%binding.pry%>
+<div class="container">
+<ul>
+<%current_basket.each do |basket|%>
+<li><b>Name:</b> <a href=#><%= basket.name%>.</a> <b>This contains:</b> <%= basket.ingredients%></li>
+<br>
+<%end%>
+</ul>
+</div>
+<h2> Total baskets made:</h2>
+<p><%= current_basket.length%></p>
+
+
+
 
 <h3>To make a change to your basket</h3>
 <h4><a href="/baskets/:basket.user_id/edit">click here!</a></h4>
