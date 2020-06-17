@@ -12,7 +12,6 @@ end
 #users baskets and customized
 get '/users/:id/baskets' do
   if logged_in?
-    binding.pry
       #current_user
       @baskets = Basket.find_by(user_id: params[:id])
   #@baskets = Basket.find_by(user_id: current_user.id)
