@@ -1,3 +1,6 @@
+<% if updated_message %>
+<h2 style="color:red;"><%= updated_message %></h2>
+<% end %>
 
 <h2>The <%= @basket.name%> Basket</h2>
 <h3>This contains:</h3>
@@ -14,4 +17,4 @@
 <h4><a href="<%= "/baskets/#{@basket.id}/edit" %>">click here!</a></h4>
 <br>
 <br>
-<a href="/logout">Logout</a> | <a href="<%="/user/#{current_user.id}"%>">Click here to go back to your profile</a>
+<a href="/logout">Logout</a> | <a href="<%="/users/#{current_user.id}"%>">Click here to go back to your profile</a>

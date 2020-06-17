@@ -89,10 +89,8 @@ class BasketsController < ApplicationController
             #@basket.name = params[:basket][:name]
             #@basket.ingredients = params[:basket][:ingredients]
             #@basket.save
+            updated_message
             redirect to "/baskets/#{@basket.id}"
-        else
-                created_message
-                erb :"/baskets/#{@basket.id}/edit"
         end
     end
 
@@ -103,7 +101,6 @@ class BasketsController < ApplicationController
         #@basket = Basket.find_by_id(params[:basket]) 
             #find_basket.destroy
             @basket = Basket.find_by_id(params[:id]) 
-            binding.pry
             @basket.destroy
             deleted_message
             redirect to "/baskets"
@@ -128,5 +125,12 @@ class BasketsController < ApplicationController
         Would you like to create another?!!
             HEREDOC
         end
+        def updated_message
+            <<-HEREDOC 
+        This basket has been updated. 
+        What would you like to do now?
+            HEREDOC
+        end
+
     end
 end
