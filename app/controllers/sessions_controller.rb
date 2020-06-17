@@ -36,9 +36,9 @@ post "/login" do
             redirect to "/users/#{user.id}"
         else
             @error = "Invalid credentials"
-            erb :"hello"
+            erb :"/hello"
         end
-        binding.pry
+        # binding.pry
 end
 end
 

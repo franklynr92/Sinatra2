@@ -6,6 +6,7 @@ class BasketsController < ApplicationController
 get '/baskets' do
     if logged_in?
         current_user
+        @baskets = Basket.all
         erb :"baskets/index"
     else    
         @error = "Invalid credentials"
@@ -48,9 +49,9 @@ get '/baskets/:id' do
     if logged_in?
         
     @basket = Basket.find(params[:id])
-    binding.pry
+    #binding.pry
     # then just render @baskets in the view
-    erb :"baskets/show"
+    erb :"baskets/show_basket"
     end
 end
 
