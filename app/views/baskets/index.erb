@@ -1,10 +1,9 @@
-<% if @user %>
-<h1>Hello  <%= @user.name %> !</h1>
+<h1>Hello  <%= current_user.name %> !</h1>
 <h3>Here are all the baskets</h3>
- <% end %>
 
 
-<h2 style="color:red;"><%= deleted_message %></h2>
+
+<h2 style="color:red;"><%= @deleted_message %></h2>
 
 
 <ul><% @baskets.all.each do |basket| %>
@@ -19,7 +18,7 @@
 
 <hr>
 <h3>Feeling Creative?</h3>
-<h4>Click <a href="/baskets/new">Here</a> to do so</h4>
+<h4>Click <a href="/baskets/new">Here</a></h4>
 <hr>
 <br>
 

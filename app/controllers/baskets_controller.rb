@@ -26,7 +26,7 @@ class BasketsController < ApplicationController
         if logged_in?
             current_user
             @basket = Basket.find_by(id: params[:id])
-            binding.pry
+            #binding.pry
             # then just render @baskets in the view
             erb :"baskets/show_basket"
         end
@@ -39,15 +39,15 @@ class BasketsController < ApplicationController
         # utilize existing helpers
         if logged_in? 
             current_user
-            binding.pry
+            #binding.pry
         if  !!basket_made
-                created_message
+                @created_message = created_message
                 erb :"baskets/new"
         else
                 @basket = Basket.create(params[:basket])
                 @basket.user_id = current_user.id
                 @basket.save
-                binding.pry
+               # binding.pry
                 redirect to "/baskets/#{@basket.id}"
         end
     end
@@ -56,7 +56,7 @@ class BasketsController < ApplicationController
     # get '/baskets'
 #show creation
     get '/baskets/:id/custom' do
-        binding.pry
+        #binding.pry
         if logged_in?
             current_user
             current_basket
@@ -87,13 +87,12 @@ class BasketsController < ApplicationController
     put "/baskets/:id" do
         if logged_in?
         #create helper method - set_basket
-        current_user
-        @basket = Basket.find_by_id(params[:id]) 
-        if !!@basket.update(params[:basket])
-            updated_message
+            current_user
+            @basket = Basket.find_by_id(params[:id]) 
+            @basket.update(params[:basket])
+            @updated_message = updated_message
             redirect to "/baskets/#{@basket.id}"
         end
-    end
     end
 
     # delete "/basket/:id" should be id of basket not user
@@ -104,7 +103,7 @@ class BasketsController < ApplicationController
             #find_basket.destroy
             @basket = Basket.find_by_id(params[:id]) 
             if  !!@basket.destroy
-                deleted_message
+                @deleted_message = deleted_message
                 redirect to "/baskets"
             end
         end

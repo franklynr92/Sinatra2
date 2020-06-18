@@ -12,6 +12,7 @@
 <hr>
 <br>
 <h3>To make a change to your basket</h3>
+<h4><a href="<%= "/baskets/#{@basket.id}/edit" %>">click here!</a></h4>
 
 <hr>
 <br>
@@ -19,4 +20,4 @@
 <h4>Click <a href="/baskets/index">Here</a></h4>
 <hr>
 <br>
-<p><a href="/logout">Logout</a></p> | <a href="/user/<%= current_user.id %>">Click here to go back to your profile</a>
+<p><a href="/logout">Logout</a></p> | <a href="<%="/users/#{current_user.id}"%>">Click here to go back to your profile</a>
