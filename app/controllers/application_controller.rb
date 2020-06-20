@@ -27,19 +27,22 @@ end
       @current_user ||= User.find_by(id: session[:user_id])
     end
 
+    # @basket_made = Basket.find_by(params[:basket]
 
-    def find_baskets
-      if Basket.empty?
-        @basket = Basket.save
-      else
-      Basket.find_by(user_id: current_user.id) 
-    end
-  end
+    #def find_baskets
+     # if Basket.empty?
+      #  @basket = Basket.save
+      #else
+      #Basket.find_by(user_id: current_user.id) 
+    #end
+ # end
 
-      def find_basket
-        @basket = Basket.find_by_id(params[:id]) 
-        @basket.update(params[:basket])
-      end
+ 
+
+      #def find_basket
+       # @basket = Basket.find_by_id(params[:id]) 
+        #@basket.update(params[:basket])
+      #end
 
 
       def current_basket

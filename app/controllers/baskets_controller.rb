@@ -25,7 +25,8 @@ class BasketsController < ApplicationController
     get '/baskets/:id' do
         if logged_in?
             #current_user
-            @basket = Basket.find_by(id: params[:id])
+            #@basket = Basket.find_by(id: params[:id])
+            set_basket
             #binding.pry
             # then just render @baskets in the view
             erb :"baskets/show_basket"
@@ -38,7 +39,7 @@ class BasketsController < ApplicationController
     post '/baskets' do
         # utilize existing helpers
         if logged_in? 
-            #binding.pry
+            binding.pry
             @basket = Basket.new(params[:basket])
             @basket.user_id = current_user.id
         if  @basket.save
@@ -60,8 +61,8 @@ class BasketsController < ApplicationController
     #Is it showing something pertaining to baskets or users?
     get "/baskets/:id/edit" do
         if logged_in?
-            
-            @basket = Basket.find_by(id: params[:id])# helper method
+            set_basket
+            #@basket = Basket.find_by(id: params[:id])# helper method
            # binding.pry
             if @basket.user_id == current_user.id
                 erb :"baskets/edit"
@@ -80,7 +81,7 @@ class BasketsController < ApplicationController
         if logged_in?
         #create helper method - set_basket
             @basket = Basket.find_by_id(params[:id]) 
-            binding.pry
+           # binding.pry
             if @basket.user_id == current_user.id
                 @basket.update(params[:basket])
                 redirect to "/baskets/#{@basket.id}"
@@ -94,7 +95,8 @@ class BasketsController < ApplicationController
     # follow REST - delete '/basket/:id'
     delete '/baskets/:id' do
         if logged_in?
-            @basket = Basket.find_by_id(params[:id]) 
+            #@basket = Basket.find_by_id(params[:id]) 
+            set_basket
             if  @basket.user_id == current_user.id
                 !!@basket.destroy
                 redirect to "/baskets"
@@ -102,5 +104,11 @@ class BasketsController < ApplicationController
         end  
     end
     
+    helpers do
+
+        def set_basket
+            @basket = Basket.find_by_id(params[:id])
+        end
+    end
 
 end
