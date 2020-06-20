@@ -2,7 +2,7 @@
 
 <div class="container">
 <ul>
-<% current_basket.each do |basket|%>
+<% current_user.baskets.each do |basket|%>
 
 <li><b>Name: <a href="<%= "/baskets/#{basket.id}"%>" ></b><%= basket.name %></a> <b>This contains:</b> <%= basket.ingredients%></li>
 <br>
@@ -10,7 +10,7 @@
 </ul>
 </div>
 <h2> Total baskets made:</h2>
-<p><%= current_basket.length%></p>
+<p><%= current_user.baskets.length%></p>
 
 
 

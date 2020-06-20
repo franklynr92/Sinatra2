@@ -12,8 +12,7 @@ end
 #users baskets and customized
 get '/users/:id/baskets' do
   if logged_in?
-      #current_user
-      @baskets = Basket.find_by(user_id: params[:id])
+      current_user
   #@baskets = Basket.find_by(user_id: current_user.id)
   erb :"users/index_custom"
 end

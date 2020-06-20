@@ -3,4 +3,5 @@ class Basket < ActiveRecord::Base
     #has_many :orders
     #has_many :users, through: :orders
     validates :name, :ingredients, presence: true
+    validates :name, uniqueness: true
 end

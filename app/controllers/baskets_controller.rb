@@ -2,7 +2,7 @@ class BasketsController < ApplicationController
 
     get '/baskets' do
         if logged_in?
-            current_user
+            #current_user
             @baskets = Basket.all
             erb :"baskets/index"
         else    
@@ -16,15 +16,15 @@ class BasketsController < ApplicationController
     get '/baskets/new' do
         #params[:user_id]  == 3
         if logged_in?
-            current_user
+            #current_user
             erb :"baskets/new"
         end
     end
+
 #show
     get '/baskets/:id' do
-
         if logged_in?
-            current_user
+            #current_user
             @basket = Basket.find_by(id: params[:id])
             #binding.pry
             # then just render @baskets in the view
@@ -38,44 +38,36 @@ class BasketsController < ApplicationController
     post '/baskets' do
         # utilize existing helpers
         if logged_in? 
-            current_user
             #binding.pry
-        if  !!basket_made
-                @created_message = created_message
-                erb :"baskets/new"
+            @basket = Basket.new(params[:basket])
+            @basket.user_id = current_user.id
+        if  @basket.save
+            redirect to "/baskets/#{@basket.id}"
         else
-                @basket = Basket.create(params[:basket])
-                @basket.user_id = current_user.id
-                @basket.save
-               # binding.pry
-                redirect to "/baskets/#{@basket.id}"
+            @created_message = created_message
+            erb :"baskets/new"
+                     # binding.pry
         end
     end
     end
 
     # get '/baskets'
-#show creation
-    get '/baskets/:id/custom' do
-        #binding.pry
-        if logged_in?
-            current_user
-            current_basket
-        #@baskets = Basket.find_by(user_id: current_user.id)
-        erb :"baskets/index_custom"
-    end
-    end
-
 
     # get '/baskets/edit'
     #baskets/:id/edit
     #move this to user controller? 
     #to answer that question we must ask what is it showing:
-    # Is it showing something pertaining to baskets or users?
+    #Is it showing something pertaining to baskets or users?
     get "/baskets/:id/edit" do
         if logged_in?
-            current_user
-            @basket = Basket.find_by(id: params[:id])
-            erb :"baskets/edit"
+            
+            @basket = Basket.find_by(id: params[:id])# helper method
+           # binding.pry
+            if @basket.user_id == current_user.id
+                erb :"baskets/edit"
+            else
+                redirect to "/baskets"
+            end    
         end
     end
 
@@ -87,11 +79,14 @@ class BasketsController < ApplicationController
     put "/baskets/:id" do
         if logged_in?
         #create helper method - set_basket
-            current_user
             @basket = Basket.find_by_id(params[:id]) 
-            @basket.update(params[:basket])
-            @updated_message = updated_message
-            redirect to "/baskets/#{@basket.id}"
+            binding.pry
+            if @basket.user_id == current_user.id
+                @basket.update(params[:basket])
+                redirect to "/baskets/#{@basket.id}"
+            else
+                redirect to "/baskets/index"
+            end
         end
     end
 
@@ -99,22 +94,13 @@ class BasketsController < ApplicationController
     # follow REST - delete '/basket/:id'
     delete '/baskets/:id' do
         if logged_in?
-        #@basket = Basket.find_by_id(params[:basket]) 
-            #find_basket.destroy
             @basket = Basket.find_by_id(params[:id]) 
-            if  !!@basket.destroy
-                @deleted_message = deleted_message
+            if  @basket.user_id == current_user.id
+                !!@basket.destroy
                 redirect to "/baskets"
             end
-        end
+        end  
     end
+    
 
-    helpers do
-        def basket_made
-            Basket.find_by(name: params[:basket][:name])
-        end
-
-       
-
-    end
 end
