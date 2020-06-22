@@ -39,7 +39,7 @@ class BasketsController < ApplicationController
     post '/baskets' do
         # utilize existing helpers
         if logged_in? 
-            binding.pry
+            #binding.pry
             @basket = Basket.new(params[:basket])
             @basket.user_id = current_user.id
         if  @basket.save
@@ -64,7 +64,7 @@ class BasketsController < ApplicationController
             set_basket
             #@basket = Basket.find_by(id: params[:id])# helper method
            # binding.pry
-            if @basket.user_id == current_user.id
+            if compare_basket
                 erb :"baskets/edit"
             else
                 redirect to "/baskets"
@@ -82,7 +82,8 @@ class BasketsController < ApplicationController
         #create helper method - set_basket
             @basket = Basket.find_by_id(params[:id]) 
            # binding.pry
-            if @basket.user_id == current_user.id
+            if compare_basket
+                binding.pry
                 @basket.update(params[:basket])
                 redirect to "/baskets/#{@basket.id}"
             else
@@ -108,6 +109,10 @@ class BasketsController < ApplicationController
 
         def set_basket
             @basket = Basket.find_by_id(params[:id])
+        end
+
+        def compare_basket
+            @basket.user_id == current_user.id
         end
     end
 
